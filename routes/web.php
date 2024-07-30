@@ -30,3 +30,9 @@ Route::get('/use/${id?}/comment', function (?string $id = 'John') {
 Route:get('use/"{name}', function (string $name) {
     return $name;
 }).where('name', '[A-Za-z]+');
+
+
+//named route
+Route::get('/user/profile', function () {
+    return 'profile';
+})->name('profile');
