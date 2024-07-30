@@ -27,12 +27,25 @@ Route::get('/use/${id?}/comment', function (?string $id = 'John') {
 });
 
 //Regular Exception Contrains
-Route:get('use/"{name}', function (string $name) {
+Route::get('use/"{name}', function (string $name) {
     return $name;
-}).where('name', '[A-Za-z]+');
+})->where('name', '[A-Za-z]+');
 
 
 //named route
 Route::get('/user/profile', function () {
     return 'profile';
 })->name('profile');
+
+//Group Route
+Route::middle(['profile', 'auth'])->group(
+    function () {
+        Route::get('/profile', function () {
+            return 'Test Tinmy 1';
+        });
+
+        Route::get('/profile', function () {
+            return 'Test Tinmy 2';
+        });
+    }
+);
